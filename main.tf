@@ -9,19 +9,19 @@ resource "aws_vpc" "security_zone" {
 }
 
 // Subnet
-resource "aws_subnet" "private-security-zone" { #Change to your AZ
+resource "aws_subnet" "private-security-zone" { 
   vpc_id            = aws_vpc.security_zone.id
   cidr_block        = "10.230.0.0/24"
   availability_zone = "us-east-1a" #Change to your AZ
 
   tags = {
-    Name    = "private-security-zone" #Change to your AZ
+    Name    = "private-security-zone" 
     Service = "logs-collection"
     Owner   = "Chewbacca"
     Planet  = "Musafar"
   }
 }
-resource "aws_subnet" "public-security-zone" { #Change to your AZ
+resource "aws_subnet" "public-security-zone" { 
   vpc_id            = aws_vpc.security_zone.id
   cidr_block        = "10.230.1.0/24"
   availability_zone = "us-east-1a" #Change to your AZ
@@ -248,10 +248,10 @@ output "bastion_public_ip" {
 
 /*
 Read Me 
-------------------------------UPDATE WITH THE CORRECT IP ADDRESSES --------------------------------
+------------------------------UPDATE WITH THE CORRECT IP ADDRESSES AND KEYS--------------------------------
 Bastion commands
 eval "$(ssh-agent -s)"
-ssh-add Siem.pem 
+ssh-add Siem.pem --- Use the correct Key here for your bastion agent
 ssh -A -i Siem.pem ec2-user@54.85.15.178
 ssh ec2-user@10.230.0.205
 
